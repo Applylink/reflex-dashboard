@@ -1,11 +1,10 @@
 import os
-import openai
 
+import openai
 import reflex as rx
-from sqlmodel import select, asc, desc, or_, func
+from sqlmodel import asc, desc, func, or_, select
 
 from .models import Customer
-
 
 products: dict[str, dict] = {
     "T-shirt": {
@@ -83,7 +82,7 @@ class State(rx.State):
                             getattr(Customer, field).ilike(search_value)
                             for field in Customer.get_fields()
                         ],
-                    )
+                    ),
                 )
 
             if self.sort_value:
@@ -119,7 +118,7 @@ class State(rx.State):
         with rx.session() as session:
             if session.exec(
                 select(Customer).where(
-                    Customer.email == self.current_user["email"])
+                    Customer.email == self.current_user["email"]),
             ).first():
                 return rx.window_alert("User with this email already exists")
             session.add(Customer(**self.current_user))
@@ -131,7 +130,7 @@ class State(rx.State):
         self.current_user.update(form_data)
         with rx.session() as session:
             customer = session.exec(
-                select(Customer).where(Customer.id == self.current_user["id"])
+                select(Customer).where(Customer.id == self.current_user["id"]),
             ).first()
             for field in Customer.get_fields():
                 if field != "id":
@@ -160,7 +159,7 @@ class State(rx.State):
             messages=[
                 {"role": "system", "content": f"You are a salesperson at Reflex, a company that sells clothing. You have a list of products and customer data. Your task is to write a sales email to a customer recommending one of the products. The email should be personalized and include a recommendation based on the customer's data. The email should be {self.tone} and {self.length} characters long."},
                 {"role": "user", "content": f"Based on these {products} write a sales email to {self.current_user.customer_name} and email {self.current_user.email} who is {self.current_user.age} years old and a {self.current_user.gender} gender. {self.current_user.customer_name} lives in {self.current_user.location} and works as a {self.current_user.job} and earns {self.current_user.salary} per year. Make sure the email recommends one product only and is personalized to {self.current_user.customer_name}. The company is named Reflex its website is https://reflex.dev."},
-            ]
+            ],
         )
         for item in session:
             if hasattr(item.choices[0].delta, "content"):

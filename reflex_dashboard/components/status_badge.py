@@ -8,7 +8,7 @@ def _badge(status: str):
         "Canceled": ("ban", "Canceled", "red"),
     }
     icon, text, color_scheme = badge_mapping.get(
-        status, ("loader", "Pending", "yellow")
+        status, ("loader", "Pending", "yellow"),
     )
     return rx.badge(
         rx.icon(icon, size=16),

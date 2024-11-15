@@ -1,5 +1,6 @@
 import reflex as rx
-from ..backend.email_state import State, Customer
+
+from ..backend.email_state import Customer, State
 from ..components.form_field import form_field
 from ..components.gender_badges import gender_badge
 
@@ -28,7 +29,7 @@ def _show_customer(user: Customer):
                 ("Female", gender_badge("Female")),
                 ("Other", gender_badge("Other")),
                 gender_badge("Other"),
-            )
+            ),
         ),
         rx.table.cell(user.location),
         rx.table.cell(user.job),
@@ -55,13 +56,13 @@ def _show_customer(user: Customer):
                 _update_customer_dialog(user),
                 rx.icon_button(
                     rx.icon("trash-2", size=22),
-                    on_click=lambda: State.delete_customer(getattr(user, "id")),
+                    on_click=lambda: State.delete_customer(user.id),
                     size="2",
                     variant="solid",
                     color_scheme="red",
                 ),
                 min_width="max-content",
-            )
+            ),
         ),
         style={"_hover": {"bg": rx.color("accent", 2)}},
         align="center",
@@ -130,11 +131,11 @@ def _add_customer_button() -> rx.Component:
                         rx.hstack(
                             # Email
                             form_field(
-                                "Email", "user@reflex.dev", "email", "email", "mail"
+                                "Email", "user@reflex.dev", "email", "email", "mail",
                             ),
                             # Job
                             form_field(
-                                "Job", "Customer Job", "text", "job", "briefcase"
+                                "Job", "Customer Job", "text", "job", "briefcase",
                             ),
                             spacing="3",
                             width="100%",

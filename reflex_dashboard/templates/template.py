@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from .. import styles
-from ..components.sidebar import sidebar
-from ..components.navbar import navbar
-from typing import Callable
+from collections.abc import Callable
 
 import reflex as rx
+
+from .. import styles
+from ..components.navbar import navbar
+from ..components.sidebar import sidebar
 
 # Meta tags for the app.
 default_meta = [

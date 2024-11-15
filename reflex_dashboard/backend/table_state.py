@@ -1,6 +1,6 @@
-import reflex as rx
-from typing import Union, List
 import csv
+
+import reflex as rx
 
 
 class Item(rx.Base):
@@ -15,7 +15,7 @@ class Item(rx.Base):
 class TableState(rx.State):
     """The state class."""
 
-    items: List[Item] = []
+    items: list[Item] = []
 
     search_value: str = ""
     sort_value: str = ""
@@ -26,7 +26,7 @@ class TableState(rx.State):
     limit: int = 12  # Number of rows per page
 
     @rx.var(cache=True)
-    def filtered_sorted_items(self) -> List[Item]:
+    def filtered_sorted_items(self) -> list[Item]:
         items = self.items
 
         # Filter items based on selected item
@@ -94,7 +94,7 @@ class TableState(rx.State):
         self.offset = (self.total_pages - 1) * self.limit
 
     def load_entries(self):
-        with open("items.csv", mode="r", encoding="utf-8") as file:
+        with open("items.csv", encoding="utf-8") as file:
             reader = csv.DictReader(file)
             self.items = [Item(**row) for row in reader]
             self.total_items = len(self.items)

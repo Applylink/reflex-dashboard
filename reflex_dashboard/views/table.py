@@ -1,5 +1,6 @@
 import reflex as rx
-from ..backend.table_state import TableState, Item
+
+from ..backend.table_state import Item, TableState
 from ..components.status_badge import status_badge
 
 
@@ -63,7 +64,7 @@ def _pagination_view() -> rx.Component:
                     rx.icon("chevron-right", size=18),
                     on_click=TableState.next_page,
                     opacity=rx.cond(
-                        TableState.page_number == TableState.total_pages, 0.6, 1
+                        TableState.page_number == TableState.total_pages, 0.6, 1,
                     ),
                     color_scheme=rx.cond(
                         TableState.page_number == TableState.total_pages,
@@ -76,7 +77,7 @@ def _pagination_view() -> rx.Component:
                     rx.icon("chevrons-right", size=18),
                     on_click=TableState.last_page,
                     opacity=rx.cond(
-                        TableState.page_number == TableState.total_pages, 0.6, 1
+                        TableState.page_number == TableState.total_pages, 0.6, 1,
                     ),
                     color_scheme=rx.cond(
                         TableState.page_number == TableState.total_pages,
@@ -181,7 +182,7 @@ def main_table() -> rx.Component:
                 rx.foreach(
                     TableState.get_current_page,
                     lambda item, index: _show_item(item, index),
-                )
+                ),
             ),
             variant="surface",
             size="3",

@@ -1,10 +1,10 @@
 """The table page."""
 
-from ..templates import template
-from ..backend.table_state import TableState
-from ..views.table import main_table
-
 import reflex as rx
+
+from ..backend.table_state import TableState
+from ..templates import template
+from ..views.table import main_table
 
 
 @template(route="/table", title="Table", on_load=TableState.load_entries)

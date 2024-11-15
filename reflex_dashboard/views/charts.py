@@ -1,6 +1,7 @@
-import reflex as rx
-import random
 import datetime
+import random
+
+import reflex as rx
 from reflex.components.radix.themes.base import (
     LiteralAccentColor,
 )
@@ -31,7 +32,7 @@ class StatsState(rx.State):
                         datetime.datetime.now() - datetime.timedelta(days=i)
                     ).strftime("%m-%d"),
                     "Revenue": random.randint(1000, 5000),
-                }
+                },
             )
         for i in range(30, -1, -1):
             self.orders_data.append(
@@ -40,7 +41,7 @@ class StatsState(rx.State):
                         datetime.datetime.now() - datetime.timedelta(days=i)
                     ).strftime("%m-%d"),
                     "Orders": random.randint(100, 500),
-                }
+                },
             )
 
         for i in range(30, -1, -1):
@@ -50,7 +51,7 @@ class StatsState(rx.State):
                         datetime.datetime.now() - datetime.timedelta(days=i)
                     ).strftime("%m-%d"),
                     "Users": random.randint(100, 500),
-                }
+                },
             )
 
         self.device_data = [
@@ -93,7 +94,7 @@ def _create_gradient(color: LiteralAccentColor, id: str) -> rx.Component:
         rx.el.svg.defs(
             rx.el.svg.linear_gradient(
                 rx.el.svg.stop(
-                    stop_color=rx.color(color, 7), offset="5%", stop_opacity=0.8
+                    stop_color=rx.color(color, 7), offset="5%", stop_opacity=0.8,
                 ),
                 rx.el.svg.stop(stop_color=rx.color(color, 7), offset="95%", stop_opacity=0),
                 x1=0,

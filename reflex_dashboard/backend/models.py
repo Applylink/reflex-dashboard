@@ -1,7 +1,7 @@
 import reflex as rx
 
 
-class Customer(rx.Model, table=True):  # type: ignore
+class Customer(rx.Model, table=True):
     """The customer model."""
 
     customer_name: str

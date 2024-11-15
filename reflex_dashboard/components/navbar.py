@@ -1,8 +1,8 @@
 """Navbar component for the app."""
 
-from reflex_dashboard import styles
-
 import reflex as rx
+
+from reflex_dashboard import styles
 
 
 def menu_item_icon(icon: str) -> rx.Component:
@@ -145,7 +145,7 @@ def menu_button() -> rx.Component:
                     *[
                         menu_item(
                             text=page.get(
-                                "title", page["route"].strip("/").capitalize()
+                                "title", page["route"].strip("/").capitalize(),
                             ),
                             url=page["route"],
                         )

@@ -1,9 +1,9 @@
 """The about page."""
 
+import reflex as rx
+
 from .. import styles
 from ..templates import template
-
-import reflex as rx
 
 
 @template(route="/about", title="About")

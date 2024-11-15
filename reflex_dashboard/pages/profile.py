@@ -1,9 +1,9 @@
 """The profile page."""
 
-from ..templates import template
-from ..components.profile_input import profile_input
-
 import reflex as rx
+
+from ..components.profile_input import profile_input
+from ..templates import template
 
 
 class Profile(rx.Base):
@@ -18,7 +18,7 @@ class ProfileState(rx.State):
     def handle_submit(self, form_data: dict):
         self.profile = Profile(**form_data)
         return rx.toast.success(
-            "Profile updated successfully", position="top-center"
+            "Profile updated successfully", position="top-center",
         )
 
     def toggle_notifications(self):

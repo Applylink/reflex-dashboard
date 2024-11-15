@@ -3,7 +3,7 @@ import reflex as rx
 
 def _badge(text: str, color_scheme: str):
     return rx.badge(
-        text, color_scheme=color_scheme, radius="full", variant="soft", size="3"
+        text, color_scheme=color_scheme, radius="full", variant="soft", size="3",
     )
 
 
