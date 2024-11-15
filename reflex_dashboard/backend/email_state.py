@@ -173,7 +173,7 @@ class State(rx.State):
             self.gen_response = False
 
     def generate_email(self, user: Customer):
-        self.current_user = Customer(**user)
+        self.current_user = user
         self.gen_response = True
         self.email_content_data = ""
         return State.call_openai

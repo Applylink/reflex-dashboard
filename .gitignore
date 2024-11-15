@@ -171,3 +171,4 @@ assets/external/
 venv/
 
 *.DS_Store
+*.ipynb

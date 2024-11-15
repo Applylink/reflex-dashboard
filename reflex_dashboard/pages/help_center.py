@@ -1,4 +1,4 @@
-"""The about page."""
+"""The help center page."""
 
 from pathlib import Path
 
@@ -8,8 +8,8 @@ from reflex_dashboard import styles
 from reflex_dashboard.templates import template
 
 
-@template(route="/about", title="About")
-def about() -> rx.Component:
+@template(route="/help_center", title="Help Center")
+def help_center() -> rx.Component:
     """The about page.
 
     Returns:

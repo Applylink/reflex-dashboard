@@ -7,7 +7,6 @@ import reflex as rx
 from reflex_dashboard import styles
 from reflex_dashboard.components.card import card
 from reflex_dashboard.components.notification import notification
-from reflex_dashboard.pages.profile import ProfileState
 from reflex_dashboard.templates import template
 from reflex_dashboard.views.adquisition_view import adquisition
 from reflex_dashboard.views.charts import (
@@ -53,7 +52,7 @@ def index() -> rx.Component:
         The UI for the overview page.
     """
     return rx.vstack(
-        rx.heading(f"Welcome, {ProfileState.profile.name}", size="5"),
+        # rx.heading(f"Welcome, {ProfileState.profile.name}", size="5"),
         rx.flex(
             rx.input(
                 rx.input.slot(rx.icon("search"), padding_left="0"),

@@ -31,7 +31,7 @@ def sidebar_footer() -> rx.Component:
     Returns:
         The sidebar footer component.
     """
-    return rx.hstack(
+    doc_and_blog = rx.hstack(
         rx.link(
             rx.text("Docs", size="3"),
             href="https://reflex.dev/docs/getting-started/introduction/",
@@ -50,6 +50,13 @@ def sidebar_footer() -> rx.Component:
         align="center",
         width="100%",
         padding="0.35em",
+    )
+    return rx.vstack(
+        sidebar_item("Settings", "/settings"),
+        sidebar_item("Logout", "/logout"),
+        doc_and_blog,
+        spacing="1",
+        width="100%",
     )
 
 
@@ -77,10 +84,17 @@ def sidebar_item(text: str, url: str) -> rx.Component:
             rx.match(
                 text,
                 ("Overview", sidebar_item_icon("home")),
+                ("Resume AI", sidebar_item_icon("sparkle")),
+                ("Email AI", sidebar_item_icon("sparkle")),
+                ("My Supervisors", sidebar_item_icon("user-search")),
+                ("My Universities", sidebar_item_icon("building")),
+                ("My Locations", sidebar_item_icon("map-pin")),
+                ("My Scholarships", sidebar_item_icon("graduation-cap")),
                 ("Table", sidebar_item_icon("table-2")),
                 ("About", sidebar_item_icon("book-open")),
-                ("Profile", sidebar_item_icon("user")),
+                ("My Profile", sidebar_item_icon("user")),
                 ("Settings", sidebar_item_icon("settings")),
+                ("Logout", sidebar_item_icon("log-out")),
                 sidebar_item_icon("layout-dashboard"),
             ),
             rx.text(text, size="3", weight="regular"),
@@ -127,46 +141,19 @@ def sidebar() -> rx.Component:
     Returns:
         The sidebar component.
     """
-    # Get all the decorated pages and add them to the sidebar.
-    from reflex.page import get_decorated_pages
-
-    # The ordered page routes.
-    ordered_page_routes = [
-        "/",
-        "/table",
-        "/about",
-        "/profile",
-        "/settings",
-        "/sales",
-    ]
-
-    # Get the decorated pages.
-    pages = get_decorated_pages()
-
-    # Include all pages even if they are not in the ordered_page_routes.
-    ordered_pages = sorted(
-        pages,
-        key=lambda page: (
-            ordered_page_routes.index(page["route"])
-            if page["route"] in ordered_page_routes
-            else len(ordered_page_routes)
-        ),
-    )
-
     return rx.flex(
         rx.vstack(
             sidebar_header(),
-            rx.vstack(
-                *[
-                    sidebar_item(
-                        text=page.get("title", page["route"].strip("/").capitalize()),
-                        url=page["route"],
-                    )
-                    for page in ordered_pages
-                ],
-                spacing="1",
-                width="100%",
-            ),
+            sidebar_item("Overview", "/"),
+            rx.divider(),
+            sidebar_item("Resume AI", "/resume_ai"),
+            rx.divider(),
+            sidebar_item("Email AI", "/email_ai"),
+            sidebar_item("My Supervisors", "/my_supervisor"),
+            rx.divider(),
+            sidebar_item("My Universities", "/university"),
+            sidebar_item("My Locations", "/location"),
+            sidebar_item("My Scholarships", "/scholarship"),
             rx.spacer(),
             sidebar_footer(),
             justify="end",

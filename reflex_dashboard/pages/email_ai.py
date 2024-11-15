@@ -2,14 +2,15 @@
 
 import reflex as rx
 
+from reflex_dashboard.backend.email_state import State
 from reflex_dashboard.components.navbar import navbar
 from reflex_dashboard.templates import template
 from reflex_dashboard.views.email import email_gen_ui
 from reflex_dashboard.views.email_table import main_table
 
 
-@template(route="/sales", title="Sales")
-def sales() -> rx.Component:
+@template(route="/email_ai", title="Email AI", on_load=State.load_entries)
+def email_ai() -> rx.Component:
     return rx.vstack(
         navbar(),
         rx.flex(

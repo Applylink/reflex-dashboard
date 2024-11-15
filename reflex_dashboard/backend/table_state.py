@@ -1,81 +1,56 @@
-import csv
-from pathlib import Path
+from abc import abstractmethod
 
 import reflex as rx
 
 
-class Item(rx.Base):
-    """The item class."""
-
-    name: str
-    payment: float
-    date: str
-    status: str
-
-
-class TableState(rx.State):
-    """The state class."""
-
-    items: list[Item] = []
-
+class GeneralTableState(rx.State):
+    items: list[dict] = []
     search_value: str = ""
     sort_value: str = ""
     sort_reverse: bool = False
-
     total_items: int = 0
     offset: int = 0
-    limit: int = 12  # Number of rows per page
+    limit: int = 12
+    excluded_fields: list[str] = []
+    headers: list[str] = []
 
-    @rx.var(cache=True)
-    def filtered_sorted_items(self) -> list[Item]:
+    @abstractmethod
+    def load_entries(self):
+        raise NotImplementedError
+
+    @rx.var
+    def filtered_sorted_items(self) -> list[dict]:
         items = self.items
 
-        # Filter items based on selected item
         if self.sort_value:
-            if self.sort_value in ["payment"]:
-                items = sorted(
-                    items,
-                    key=lambda item: float(getattr(item, self.sort_value)),
-                    reverse=self.sort_reverse,
-                )
-            else:
-                items = sorted(
-                    items,
-                    key=lambda item: str(getattr(item, self.sort_value)).lower(),
-                    reverse=self.sort_reverse,
-                )
+            items = sorted(
+                items,
+                key=lambda item: str(item.get(self.sort_value, "")).lower(),
+                reverse=self.sort_reverse,
+            )
 
-        # Filter items based on search value
         if self.search_value:
             search_value = self.search_value.lower()
             items = [
                 item
                 for item in items
                 if any(
-                    search_value in str(getattr(item, attr)).lower()
-                    for attr in [
-                        "name",
-                        "payment",
-                        "date",
-                        "status",
-                    ]
+                    search_value in str(value).lower() for key, value in item.items() if key not in self.excluded_fields
                 )
             ]
 
         return items
 
-    @rx.var(cache=True)
+    @rx.var
     def page_number(self) -> int:
         return (self.offset // self.limit) + 1
 
-    @rx.var(cache=True)
+    @rx.var
     def total_pages(self) -> int:
-        return (self.total_items // self.limit) + (
-            1 if self.total_items % self.limit else 0
-        )
+        return (self.total_items // self.limit) + (1 if self.total_items % self.limit else 0)
 
-    @rx.var(cache=True, initial_value=[])
-    def get_current_page(self) -> list[Item]:
+    @rx.var
+    def get_current_page(self) -> list[dict]:
         start_index = self.offset
         end_index = start_index + self.limit
         return self.filtered_sorted_items[start_index:end_index]
@@ -94,12 +69,11 @@ class TableState(rx.State):
     def last_page(self):
         self.offset = (self.total_pages - 1) * self.limit
 
-    def load_entries(self):
-        with Path("items.csv").open(encoding="utf-8") as file:
-            reader = csv.DictReader(file)
-            self.items = [Item(**row) for row in reader]
-            self.total_items = len(self.items)
-
     def toggle_sort(self):
         self.sort_reverse = not self.sort_reverse
-        self.load_entries()
+
+    def set_sort_value(self, value: str):
+        self.sort_value = value
+
+    def set_search_value(self, value: str):
+        self.search_value = value

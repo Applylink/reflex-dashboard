@@ -1,6 +1,9 @@
-from .about import about  # noqa: F401
+from .email_ai import email_ai  # noqa: F401
+from .help_center import help_center  # noqa: F401
 from .index import index  # noqa: F401
-from .profile import profile  # noqa: F401
-from .sales import sales  # noqa: F401
+from .location import location  # noqa: F401
+from .my_supervisor import my_supervisor  # noqa: F401
+from .resume_ai import resume_ai  # noqa: F401
+from .scholarship import scholarship  # noqa: F401
 from .settings import settings  # noqa: F401
-from .table import table  # noqa: F401
+from .university import university  # noqa: F401

@@ -21,7 +21,6 @@ def _show_customer(user: Customer):
     return rx.table.row(
         rx.table.row_header_cell(user.customer_name),
         rx.table.cell(user.email),
-        rx.table.cell(user.age),
         rx.table.cell(
             rx.match(
                 user.gender,
@@ -33,7 +32,6 @@ def _show_customer(user: Customer):
         ),
         rx.table.cell(user.location),
         rx.table.cell(user.job),
-        rx.table.cell(user.salary),
         rx.table.cell(
             rx.hstack(
                 rx.cond(
@@ -411,8 +409,7 @@ def main_table():
                     "age",
                     "gender",
                     "location",
-                    "job",
-                    "salary",
+                    "position",
                 ],
                 placeholder="Sort By: Name",
                 size="3",
@@ -439,11 +436,9 @@ def main_table():
                 rx.table.row(
                     _header_cell("Name", "square-user-round"),
                     _header_cell("Email", "mail"),
-                    _header_cell("Age", "person-standing"),
                     _header_cell("Gender", "user-round"),
                     _header_cell("Location", "map-pinned"),
-                    _header_cell("Job", "briefcase"),
-                    _header_cell("Salary", "dollar-sign"),
+                    _header_cell("Position", "briefcase"),
                     _header_cell("Actions", "cog"),
                 ),
             ),
