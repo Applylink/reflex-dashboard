@@ -2,10 +2,10 @@
 
 import reflex as rx
 
-from ..components.navbar import navbar
-from ..templates import template
-from ..views.email import email_gen_ui
-from ..views.email_table import main_table
+from reflex_dashboard.components.navbar import navbar
+from reflex_dashboard.templates import template
+from reflex_dashboard.views.email import email_gen_ui
+from reflex_dashboard.views.email_table import main_table
 
 
 @template(route="/sales", title="Sales")

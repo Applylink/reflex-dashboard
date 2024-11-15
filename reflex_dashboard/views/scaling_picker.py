@@ -1,6 +1,6 @@
 import reflex as rx
 
-from ..templates.template import ThemeState
+from reflex_dashboard.templates.template import ThemeState
 
 
 def scaling_picker() -> rx.Component:

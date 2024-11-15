@@ -1,7 +1,7 @@
 import reflex as rx
 
-from ..backend.table_state import Item, TableState
-from ..components.status_badge import status_badge
+from reflex_dashboard.backend.table_state import Item, TableState
+from reflex_dashboard.components.status_badge import status_badge
 
 
 def _header_cell(text: str, icon: str) -> rx.Component:

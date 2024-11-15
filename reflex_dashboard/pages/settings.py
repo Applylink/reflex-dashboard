@@ -2,10 +2,10 @@
 
 import reflex as rx
 
-from ..templates import template
-from ..views.color_picker import primary_color_picker, secondary_color_picker
-from ..views.radius_picker import radius_picker
-from ..views.scaling_picker import scaling_picker
+from reflex_dashboard.templates import template
+from reflex_dashboard.views.color_picker import primary_color_picker, secondary_color_picker
+from reflex_dashboard.views.radius_picker import radius_picker
+from reflex_dashboard.views.scaling_picker import scaling_picker
 
 
 @template(route="/settings", title="Settings")

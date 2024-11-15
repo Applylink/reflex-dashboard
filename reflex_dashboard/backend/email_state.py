@@ -49,7 +49,7 @@ products: dict[str, dict] = {
 _client = None
 
 def get_openai_client():
-    global _client
+    global _client  # noqa: PLW0603
     if _client is None:
         _client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 

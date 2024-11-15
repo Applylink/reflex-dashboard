@@ -1,8 +1,8 @@
 import reflex as rx
 
-from ..backend.email_state import Customer, State
-from ..components.form_field import form_field
-from ..components.gender_badges import gender_badge
+from reflex_dashboard.backend.email_state import Customer, State
+from reflex_dashboard.components.form_field import form_field
+from reflex_dashboard.components.gender_badges import gender_badge
 
 
 def _header_cell(text: str, icon: str):

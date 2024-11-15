@@ -1,6 +1,6 @@
-from .about import about
-from .index import index
-from .profile import profile
-from .sales import sales
-from .settings import settings
-from .table import table
+from .about import about  # noqa: F401
+from .index import index  # noqa: F401
+from .profile import profile  # noqa: F401
+from .sales import sales  # noqa: F401
+from .settings import settings  # noqa: F401
+from .table import table  # noqa: F401

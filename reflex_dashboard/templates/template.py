@@ -6,9 +6,9 @@ from collections.abc import Callable
 
 import reflex as rx
 
-from .. import styles
-from ..components.navbar import navbar
-from ..components.sidebar import sidebar
+from reflex_dashboard import styles
+from reflex_dashboard.components.navbar import navbar
+from reflex_dashboard.components.sidebar import sidebar
 
 # Meta tags for the app.
 default_meta = [

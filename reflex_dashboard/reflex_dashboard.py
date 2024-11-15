@@ -1,10 +1,10 @@
 """Welcome to Reflex!."""
-
-# Import all the pages.
 import reflex as rx
 
+# Import all the pages.
+from reflex_dashboard.pages import *  # noqa: F403
+
 from . import styles
-from .pages import *  # noqa: F403
 
 # Create the app.
 app = rx.App(

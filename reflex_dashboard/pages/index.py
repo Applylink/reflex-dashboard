@@ -4,12 +4,13 @@ import datetime
 
 import reflex as rx
 
-from .. import styles
-from ..components.card import card
-from ..components.notification import notification
-from ..templates import template
-from ..views.adquisition_view import adquisition
-from ..views.charts import (
+from reflex_dashboard import styles
+from reflex_dashboard.components.card import card
+from reflex_dashboard.components.notification import notification
+from reflex_dashboard.pages.profile import ProfileState
+from reflex_dashboard.templates import template
+from reflex_dashboard.views.adquisition_view import adquisition
+from reflex_dashboard.views.charts import (
     StatsState,
     area_toggle,
     orders_chart,
@@ -18,8 +19,7 @@ from ..views.charts import (
     timeframe_select,
     users_chart,
 )
-from ..views.stats_cards import stats_cards
-from .profile import ProfileState
+from reflex_dashboard.views.stats_cards import stats_cards
 
 
 def _time_data() -> rx.Component:

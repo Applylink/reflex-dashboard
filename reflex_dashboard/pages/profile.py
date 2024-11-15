@@ -2,8 +2,8 @@
 
 import reflex as rx
 
-from ..components.profile_input import profile_input
-from ..templates import template
+from reflex_dashboard.components.profile_input import profile_input
+from reflex_dashboard.templates import template
 
 
 class Profile(rx.Base):
